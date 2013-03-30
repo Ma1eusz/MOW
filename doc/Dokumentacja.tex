@@ -1,0 +1,121 @@
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[paper=a4, fontsize=11pt]{scrartcl} % A4 paper and 11pt font size
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+\usepackage[polish]{babel} % English language/hyphenation
+\usepackage{amsmath,amsfonts,amsthm} % Math packages
+
+\usepackage{babelbib}
+
+\usepackage{graphicx}
+\usepackage{sectsty} % Allows customizing section commands
+%\allsectionsfont{\centering \normalfont\scshape} % Make all sections centered, the default font and small caps
+
+\usepackage{fancyhdr} % Custom headers and footers
+\pagestyle{fancyplain} % Makes all pages in the document conform to the custom headers and footers
+\fancyhead{} % No page header - if you want one, create it in the same way as the footers below
+\fancyfoot[L]{} % Empty left footer
+\fancyfoot[C]{} % Empty center footer
+\fancyfoot[R]{\thepage} % Page numbering for right footer
+\renewcommand{\headrulewidth}{0pt} % Remove header underlines
+\renewcommand{\footrulewidth}{0pt} % Remove footer underlines
+\setlength{\headheight}{13.6pt} % Customize the height of the header
+
+\numberwithin{equation}{section} % Number equations within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{figure}{section} % Number figures within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{table}{section} % Number tables within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+
+\setlength\parindent{0pt} % Removes all indentation from paragraphs - comment this line for an assignment with lots of text
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\newcommand{\horrule}[1]{\rule{\linewidth}{#1}} % Create horizontal rule command with 1 argument of height
+
+\title{	
+\normalfont \normalsize 
+\textsc{Metody Odkrywania Wiedzy} \\ [25pt] % Your university, school and/or department name(s)
+\horrule{0.5pt} \\[0.4cm] % Thin top horizontal rule
+\huge Nie-całkiem-naiwny klasyfikator Bayesa \\ % The assignment title
+\horrule{2pt} \\[0.5cm] % Thick bottom horizontal rule
+\LARGE Dokumentacja wstępna
+}%
+
+
+\author{Mateusz Jamiołkowski, Michał Uziak} % Your name
+
+\date{\normalsize\today} % Today's date or a custom date
+
+\begin{document}
+
+\maketitle % Print the title
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 1
+%----------------------------------------------------------------------------------------
+
+\section{Cel projektu}
+
+Celem projektu jest implementacja algorytmu budowy sieci bayesowskiej, która będzie uwzględniać zależności między atrybutami klasyfikowanych obiektów. Na podstawie tak zbudowanego modelu zostanie zaimplementowany klasyfikator, którego działanie zostanie porównane z klasyfikatorem Bayesa pochodzącym z modułu języka R.
+
+\section{Wybór algorytmów}
+Na podstawie analizy dostępnych materiałów zdecydowano, że budowa sieci bayesowskiej zostanie zaimplementowana z wykorzystaniem drzew TAN (tree-augmented naive Bayesian Network). 
+
+\subsection{Opis działania algorytmu tworzącego sieć bayesowską}
+
+
+
+Opis algorytmu tworzenia drzew TAN:
+\begin{enumerate}
+ \item Obliczenie informacji wzajemnej $I_p(A_i,A_j|C)$ dla każdej pary atrybutów $A_i, A_j$ takich, że $i\neq j $, gdzie 
+ $I_p(A_i,A_j|C)= \sum_{c \in C}^{} {P(A_i,A_j,c) \log\frac{P(A_i,A_j|c)}{P(A_i|c)P(A_j|c)} } $ ,$C$ - klasa obiektu.
+ 
+ \item  Budowa grafu zupełnego nieskierowanego, którego wierzchołkami będą atrybuty $A_1,... ,A_n$ natomiast waga krawędzi pomiędzy atrybutami $A_i$ i $A_j$ 		będzie równa $I_p(A_i,A_j)$
+ 
+ \item  Budowa minimalnego drzewa rozpinającego z wykorzystaniem algorytmu Kruskala.
+ \item  Stworzenie drzewa skierowanego, poprzez wybór jednego wierzchołka $A_p$. Kierunek każdej krawędzi w drzewie zostanie tak dobrany, aby przechodząc 		zgodnie z kierunkiem krawędzi odległość od wierzchołka $A_p$ rosła.
+ \item Dodanie wierzchołka $C$(reprezentującego klasę obiektu) do drzewa oraz utworzenie krawędzi skierowanych “od” wierzchołka $C$ pomiędzy tym wierzchołkiem a już istniejącymi wierzchołkami $A_1,A_2...A_n$.
+ 
+\end{enumerate}
+
+\subsection{Opis konstrukcji klasyfikatora}
+Działanie klasyfikatora będzie polegało na wyborze klasy, która jest najbardziej prawdopodobna przy danym zestawie wartości atrybutów. W odróżnieniu od  naiwnego klasyfikatora Bayesa, budowany klasyfikator będzie uwzględniał, iż atrybuty są od siebie zależne. Zależność atrybutów, będzie wynikała ze zbudowanego drzewa. Krawędź wchodząca do węzła(atrybutu) oznacza, że jest zależny od innego węzła(atrybutu). Na rysunku \ref{fig:model_drzewa} przedstawiono przykładowy model drzewa TAN. Zgodnie z przedstawioną zasadą łatwo zauważyć, że atrybut $A_2$ jest zależny od atrybutu $A_1$ oraz klasy $C$.
+\begin{figure}[h]
+ \centering
+ \includegraphics[width=70mm]{model1.png}
+ \caption{Przykładowy model drzewa}
+ \label{fig:model_drzewa}
+\end{figure}
+
+Klasyfikator będzie wyznaczał klasę danego obiektu zgodnie z poniższym wzorem:
+\[h(x) = \operatorname*{arg\,max}_{c \in C} P(c|a_1,...,a_n)= \frac{P(c,a_1,a_2,...,a_n)}{P(a_1,a_2,...,a_n)}= 
+\frac {P(c) \cdot \prod_{i=1}^{n} {P(a_i|c,a_j)}}{P(a_1,a_2,...,a_n)} \]
+
+Wyrażenie $P(a_i|c,a_j)$ odzwierciedla zależności w zbudowanym drzewie TAN tz., że atrybut $A_i$ jest zależny od $A_j$
+
+\subsection{Założenia upraszczające}
+
+W celu uproszczenia implementacji opisanych algorytmów przyjęto, że zbiory danych, na których będzie badana jakość klasyfikacji klasyfikatora będą zawierały tylko atrybuty nominalne.
+
+    
+
+\section{Eksperymenty}   
+W celu sprawdzenia jakości zbudowanego klasyfikatora jego działanie zostanie porównane z implementacją naiwnego klasyfikatora Bayesa. 
+Do tego celu zostaną wykorzystane dane z repozytorium zbioru UCI.
+
+\nocite{Bayesian_Network_Classifiers}
+
+\nocite{*}
+\bibliographystyle{plain}
+\bibliography{./biblio.bib} 
+
+
+
+
+\end{document}
