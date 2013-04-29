@@ -1,98 +1,57 @@
-\name{chess.rad}
-\alias{chess.rad}
-\docType{data}
+\name{carData.rad}
+\alias{carData.rad}
+%- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-Chess End-Game -- King+Rook versus King+Pawn on a7
-   (usually abbreviated KRKPA7).  The pawn on a7 means it is one square
-   away from queening.  It is the King+Rook's side (white) to move.
+Car Evaluation Database
 }
 \description{
-This dataset come from UCI Machine Learning Repository.
+%%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
-\usage{data(chess.rad)}
-\format{
-  A data frame with 0 observations on the following 2 variables.
-  \describe{
-    \item{\code{x}}{a numeric vector}
-    \item{\code{y}}{a numeric vector}
-  }
+\usage{
+carData.rad(x)
+}
+%- maybe also 'usage' for other objects documented here.
+\arguments{
+  \item{x}{
+%%     ~~Describe \code{x} here~~
+}
 }
 \details{
-1. Title: Chess End-Game -- King+Rook versus King+Pawn on a7
-   (usually abbreviated KRKPA7).  The pawn on a7 means it is one square
-   away from queening.  It is the King+Rook's side (white) to move.
-
-2. Sources:
-    (a) Database originally generated and described by Alen Shapiro.
-    (b) Donor/Coder: Rob Holte (holte@uottawa.bitnet).  The database
-        was supplied to Holte by Peter Clark of the Turing Institute
-        in Glasgow (pete@turing.ac.uk).
-    (c) Date: 1 August 1989
-
-3. Past Usage:
-     - Alen D. Shapiro (1983,1987), "Structured Induction in Expert Systems",
-       Addison-Wesley.  This book is based on Shapiro's Ph.D. thesis (1983)
-       at the University of Edinburgh entitled "The Role of Structured
-       Induction in Expert Systems".
-     - Stephen Muggleton (1987), "Structuring Knowledge by Asking Questions",
-       pp.218-229 in "Progress in Machine Learning", edited by I. Bratko
-       and Nada Lavrac, Sigma Press, Wilmslow, England  SK9 5BB.
-     - Robert C. Holte, Liane Acker, and Bruce W. Porter (1989),
-       "Concept Learning and the Problem of Small Disjuncts",
-       Proceedings of IJCAI.  Also available as technical report AI89-106,
-       Computer Sciences Department, University of Texas at Austin,
-       Austin, Texas 78712.
-
-4. Relevant Information:
-      The dataset format is described below.  Note: the format of this
-    database was modified on 2/26/90 to conform with the format of all
-    the other databases in the UCI repository of machine learning databases.
-
-5. Number of Instances: 3196 total
-
-6. Number of Attributes: 36
-
-7. Attribute Summaries:
-    Classes (2):  -- White-can-win ("won") and White-cannot-win ("nowin").
-          I believe that White is deemed to be unable to win if the Black pawn
-          can safely advance.
-    Attributes: see Shapiro's book.
-
-8. Missing Attributes: --  none
-
-9. Class Distribution:
-    In 1669 of the positions (52%), White can win.
-    In 1527 of the positions (48%), White cannot win.
-
-The format for instances in this database is a sequence of 37 attribute values.
-Each instance is a board-descriptions for this chess endgame.  The first
-36 attributes describe the board.  The last (37th) attribute is the
-classification: "win" or "nowin".  There are 0 missing values.
-A typical board-description is
-
-f,f,f,f,f,f,f,f,f,f,f,f,l,f,n,f,f,t,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,t,t,n,won
-
-The names of the features do not appear in the board-descriptions.
-Instead, each feature correponds to a particular position in the
-feature-value list.  For example, the head of this list is the value
-for the feature "bkblk".  The following is the list of features, in
-the order in which their values appear in the feature-value list:
-
-[bkblk,bknwy,bkon8,bkona,bkspr,bkxbq,bkxcr,bkxwp,blxwp,bxqsq,cntxt,dsopp,dwipd,
- hdchk,katri,mulch,qxmsq,r2ar8,reskd,reskr,rimmx,rkxwp,rxmsq,simpl,skach,skewr,
- skrxp,spcop,stlmt,thrsk,wkcti,wkna8,wknck,wkovl,wkpos,wtoeg]
-
-In the file, there is one instance (board position) per line.
-
+%%  ~~ If necessary, more details than the description above ~~
 }
-\source{
-UCI
+\value{
+%%  ~Describe the value returned
+%%  If it is a LIST, use
+%%  \item{comp1 }{Description of 'comp1'}
+%%  \item{comp2 }{Description of 'comp2'}
+%% ...
 }
 \references{
-%%  ~~ possibly secondary sources and usages ~~
+%% ~put references to the literature/web site here ~
+}
+\author{
+%%  ~~who you are~~
+}
+\note{
+%%  ~~further notes~~
+}
+
+%% ~Make other sections like Warning with \section{Warning }{....} ~
+
+\seealso{
+%% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-data(chess.rad)
-## maybe str(chess.rad.Rd) ; plot(chess.rad.Rd) ...
+##---- Should be DIRECTLY executable !! ----
+##-- ==>  Define data, use random,
+##--	or do  help(data=index)  for the standard data sets.
+
+## The function is currently defined as
+function (x) 
+{
+  }
 }
-\keyword{datasets}
+% Add one or more standard keywords, see file 'KEYWORDS' in the
+% R documentation directory.
+\keyword{ ~kwd1 }
+\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line

@@ -1,4 +1,6 @@
 
-export(tanBayes)
+export(notSoNaiveBayes)
 
-S3method(predict,tanBayes)
+S3method(predict, notSoNaiveBayes)
+
+S3method(notSoNaiveBayes, default)

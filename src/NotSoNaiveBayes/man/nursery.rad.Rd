@@ -1,32 +1,57 @@
-\name{nursery.rad}
-\alias{nursery.rad}
-\docType{data}
+\name{carData.rad}
+\alias{carData.rad}
+%- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-Nursery Database
-
+Car Evaluation Database
 }
 \description{
-%%  ~~ A concise (1-5 lines) description of the dataset. ~~
+%%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
-\usage{data(nursery.rad)}
-\format{
-  A data frame with 0 observations on the following 2 variables.
-  \describe{
-    \item{\code{x}}{a numeric vector}
-    \item{\code{y}}{a numeric vector}
-  }
+\usage{
+carData.rad(x)
+}
+%- maybe also 'usage' for other objects documented here.
+\arguments{
+  \item{x}{
+%%     ~~Describe \code{x} here~~
+}
 }
 \details{
-%%  ~~ If necessary, more details than the __description__ above ~~
+%%  ~~ If necessary, more details than the description above ~~
 }
-\source{
-%%  ~~ reference to a publication or URL from which the data were obtained ~~
+\value{
+%%  ~Describe the value returned
+%%  If it is a LIST, use
+%%  \item{comp1 }{Description of 'comp1'}
+%%  \item{comp2 }{Description of 'comp2'}
+%% ...
 }
 \references{
-%%  ~~ possibly secondary sources and usages ~~
+%% ~put references to the literature/web site here ~
+}
+\author{
+%%  ~~who you are~~
+}
+\note{
+%%  ~~further notes~~
+}
+
+%% ~Make other sections like Warning with \section{Warning }{....} ~
+
+\seealso{
+%% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-data(nursery.rad)
-## maybe str(nursery.rad) ; plot(nursery.rad) ...
+##---- Should be DIRECTLY executable !! ----
+##-- ==>  Define data, use random,
+##--	or do  help(data=index)  for the standard data sets.
+
+## The function is currently defined as
+function (x) 
+{
+  }
 }
-\keyword{datasets}
+% Add one or more standard keywords, see file 'KEYWORDS' in the
+% R documentation directory.
+\keyword{ ~kwd1 }
+\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line

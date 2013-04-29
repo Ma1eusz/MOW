@@ -1,9 +1,9 @@
-Package: NotSoNaiveBayes
+Package: notSoNaiveBayes
 Type: Package
-Title: NotSoNavieBayes
+Title: notSoNaiveBayes: Tree-augmented Bayesian Network Classifier
 Version: 0.1
 Date: 2013-04-29
-Author: Mateusz Jamiołkowski
-Maintainer: Mateusz Jamiołkowski <MJamiolkowski at stud.elka.pw.edu.pl>
+Author: Mateusz Jamiolkowski
+Maintainer: Mateusz Jamiolkowski <MJamiolkowski@stud.elka.pw.edu.pl>
 Description: This package implements tree-augmented navie Bayesian network (TAN)
-License: GPL
+License: GPL (>= 2)

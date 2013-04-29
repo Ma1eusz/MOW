@@ -1,3 +1,4 @@
+
 kruskal <- function (I) {
   rows = dim(I)[1]
   cols = dim(I)[2]
@@ -32,7 +33,7 @@ kruskal <- function (I) {
           parts[which(parts==temp)] <- parts[bigger]
         }
         con[smaller,bigger] =1
-
+        
       }
       else {
         if(parts[maxR]==0) {
@@ -46,7 +47,7 @@ kruskal <- function (I) {
         
       }
       
-    
+      
       
       if(flag > 0){
         break

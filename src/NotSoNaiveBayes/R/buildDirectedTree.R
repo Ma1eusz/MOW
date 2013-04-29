@@ -20,7 +20,7 @@ buildDirectedTree <- function(I,root) {
         }
       }
       nodes[i] = 2
-        
+      
     }
     
     if(min(nodes)>0) {

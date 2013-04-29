@@ -1,9 +1,10 @@
 notSoNaiveBayes <- function(obj,..) 
-  UseMethod(notSoNaiveBayes)
+  UseMethod("notSoNaiveBayes")
 
 
 
-notSoNaiveBayes.defualt <- function(x,y) {
+notSoNaiveBayes.default <- function(x,y,...) {
+  call <- match.call()
   rows <- dim(x)[1]
   cols <- dim(x)[2]
   comb <- combn(cols,2)
@@ -166,97 +167,4 @@ predict.notSoNaiveBayes <- function (obj,x) {
   ret
 }
 
-buildDirectedTree <- function(I,root) {
-  nodesCount = dim(I)[1]
-  nodes = array(0,nodesCount)
-  retI= array(0,c(nodesCount,nodesCount))
-  #Ustalamy wierzchołek początkowy
-  #0 - wierzchołek niezsotał jescze napotakany
-  #1 - wierzchołek do przetworzenia
-  #2 - wierzchołek został przetworzony
-  nodes[root]= 1
-  
-  repeat {
-    #aktualnie prztwarzane wierzchołki
-    curr =  which(nodes==1)
-    for(i in curr) {
-      con = which(I[i,]==1)
-      for(j in con) {
-        if(nodes[j]==0) {
-          retI[i,j] =1
-          nodes[j] = 1
-        }
-      }
-      nodes[i] = 2
-      
-    }
-    
-    if(min(nodes)>0) {
-      break
-    }
-  }
-  
-  retI
-  
-}
 
-kruskal <- function (I) {
-  rows = dim(I)[1]
-  cols = dim(I)[2]
-  nodes = cols
-  
-  con = array(0,c(nodes,nodes))
-  parts = array(0,nodes)
-  parts[0] = 1
-  for (i in 1:(nodes-1)) {
-    
-    repeat{
-      flag=1
-      maxv = max(I, na.rm=TRUE)
-      w = which.max(I)
-      maxC = w%/%rows+1
-      maxR = w%%rows
-      I[maxR, maxC]  <- -19 #Magic number :)
-      
-      if(parts[maxR] != parts[maxC]) {
-        #Węzły należą do róznych podgrafów można dodać krawędź
-        if(parts[maxR] > parts[maxC]){
-          smaller = maxC
-          bigger = maxR
-        }
-        else{
-          smaller = maxR
-          bigger = maxC
-        }
-        temp = parts[smaller]
-        parts[smaller] = parts[bigger]
-        if(temp != 0 ) {
-          parts[which(parts==temp)] <- parts[bigger]
-        }
-        con[smaller,bigger] =1
-        
-      }
-      else {
-        if(parts[maxR]==0) {
-          parts[maxR] = max(parts) +1
-          parts[maxC] = parts[maxR]
-          con[maxR,maxC] =1
-        }
-        else{
-          flag = 0;
-        }
-        
-      }
-      
-      
-      
-      if(flag > 0){
-        break
-      }
-    }
-    
-  }
-  con=con+t(con)
-  con
-  
-}
