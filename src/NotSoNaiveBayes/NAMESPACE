@@ -1,0 +1,4 @@
+
+export(tanBayes)
+
+S3method(predict,tanBayes)
