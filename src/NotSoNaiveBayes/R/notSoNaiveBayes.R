@@ -162,8 +162,9 @@ predict.notSoNaiveBayes <- function (obj,x) {
     className = dimnames(obj$classProb)[[1]][maxi]
     className
   }
-  ret = estClass(x[1,])
+  #ret = estClass(x[1,])
   ret = apply(x,1,estClass)
+  ret = factor(ret,levels= dimnames(obj$apriori[[1]])[[1]])
   ret
 }
 
