@@ -1,0 +1,6 @@
+
+export(notSoNaiveBayes)
+
+S3method(predict, notSoNaiveBayes)
+
+S3method(notSoNaiveBayes, default)
