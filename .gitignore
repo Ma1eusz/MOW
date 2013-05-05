@@ -1,5 +1,9 @@
 # History files
 .Rhistory
+.aux
+.dvi
+.backup
 
 # Example code in package build process
 *-Ex.R
+.Rproj.user
