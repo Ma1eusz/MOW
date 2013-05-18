@@ -1,0 +1,93 @@
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[paper=a4, fontsize=11pt]{scrartcl} % A4 paper and 11pt font size
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+\usepackage[polish]{babel} % English language/hyphenation
+\usepackage{amsmath,amsfonts,amsthm} % Math packages
+
+\usepackage{babelbib}
+
+\usepackage{graphicx}
+\usepackage{sectsty} % Allows customizing section commands
+%\allsectionsfont{\centering \normalfont\scshape} % Make all sections centered, the default font and small caps
+\usepackage{hyperref}
+
+\usepackage{fancyhdr} % Custom headers and footers
+\pagestyle{fancyplain} % Makes all pages in the document conform to the custom headers and footers
+\fancyhead{} % No page header - if you want one, create it in the same way as the footers below
+\fancyfoot[L]{} % Empty left footer
+\fancyfoot[C]{} % Empty center footer
+\fancyfoot[R]{\thepage} % Page numbering for right footer
+\renewcommand{\headrulewidth}{0pt} % Remove header underlines
+\renewcommand{\footrulewidth}{0pt} % Remove footer underlines
+\setlength{\headheight}{13.6pt} % Customize the height of the header
+
+\numberwithin{equation}{section} % Number equations within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{figure}{section} % Number figures within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{table}{section} % Number tables within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+
+\setlength\parindent{0pt} % Removes all indentation from paragraphs - comment this line for an assignment with lots of text
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\newcommand{\horrule}[1]{\rule{\linewidth}{#1}} % Create horizontal rule command with 1 argument of height
+
+\title{	
+\normalfont \normalsize 
+\textsc{Metody Odkrywania Wiedzy} \\ [25pt] % Your university, school and/or department name(s)
+\horrule{0.5pt} \\[0.4cm] % Thin top horizontal rule
+\huge Nie-całkiem-naiwny klasyfikator Bayesa \\ % The assignment title
+\horrule{2pt} \\[0.5cm] % Thick bottom horizontal rule
+\LARGE Dokumentacja końcowa
+}%
+
+
+\author{Mateusz Jamiołkowski, Michał Uziak} % Your name
+
+\date{\normalsize\today} % Today's date or a custom date
+
+\begin{document}
+
+\maketitle % Print the title
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 1
+%----------------------------------------------------------------------------------------
+\section{Zaimplementowana funkcjonalność}
+W ramach powyższego  projektu została zaimplementowana funkcjonalność, zaprezentowana w dokumentacji początkowej.
+W formie pakietu  języka R o nazwie \textit{notSoNaiveBayes} zostały udostępnione następujące funkcje:
+\begin{itemize}
+ \item \textit{notSoNaiveBayes} - funkcja domyślna, która na podstawie danych uczących buduje model, który jest zwracany jako obiekt języka R.
+ \item \textit{predict} - funkcja, która na podstawie modelu uzyskanego w wyniku działania funkcji \textit{notSoNaiveBayes} i wektora (macierzy) atrybutów próbek przypisuje im klasę.
+\end{itemize}
+
+Dodatkowo na potrzeby implementacji zostały napisane następujące funkcje:
+\begin{itemize}
+ \item \textit{buildDirectedTree} - funkcja, która na wejściu przyjmuje graf nieskierowany zakodowany w formie macierzy sąsiedztwa oraz numer wierzchołka grafu, który ma zostać korzeniem drzewa jakie powstanie jako argument wyjściowy tej funkcji.
+ \item \textit{kruskal} - jest to implementacja klasycznego algorytmu Kruskala, z jedną różnicą,napisana funkcja szuka maksymalnego drzewa rozpinającego.
+\end{itemize}
+
+\section{Założenie projektowe}
+Algorytm tworzenia modelu nie-całkiem-naiwnego klasyfikatora został napisany na podstawie artykułu \cite{Bayesian_Network_Classifiers}
+
+\section{Testy}
+\section{Porównanie jakości klasyfikacji }
+
+
+
+
+
+\bibliographystyle{plain}
+\bibliography{./biblio.bib} 
+
+
+
+
+\end{document}
