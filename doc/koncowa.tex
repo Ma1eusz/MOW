@@ -60,8 +60,55 @@
 %----------------------------------------------------------------------------------------
 %	PROBLEM 1
 %----------------------------------------------------------------------------------------
-\section{Zaimplementowana funkcjonalność}
-W ramach powyższego  projektu została zaimplementowana funkcjonalność, zaprezentowana w dokumentacji początkowej.
+\newpage
+
+\tableofcontents
+
+\newpage
+
+\section{Wstęp}
+
+Celem projektu jest implementacja algorytmu budowy sieci bayesowskiej, która będzie uwzględniać zależności między atrybutami klasyfikowanych obiektów. Na podstawie tak zbudowanego modelu zostanie zaimplementowany alogrytm, którego działanie zostanie porównane z dostępnymi modułami klasyfikacji języka R.
+
+\section{Algorytm}
+Na podstawie analizy dostępnych materiałów zdecydowano, że budowa sieci bayesowskiej zostanie zaimplementowana z wykorzystaniem drzew TAN (tree-augmented naive Bayesian Network). 
+
+\subsection{Opis działania algorytmu tworzącego sieć bayesowską}
+
+
+
+Opis algorytmu tworzenia drzew TAN:
+\begin{enumerate}
+ \item Obliczenie informacji wzajemnej $I_p(A_i,A_j|C)$ dla każdej pary atrybutów $A_i, A_j$ takich, że $i\neq j $, gdzie 
+ $I_p(A_i,A_j|C)= \sum_{c \in C}^{} {P(A_i,A_j,c) \log\frac{P(A_i,A_j|c)}{P(A_i|c)P(A_j|c)} } $ ,$C$ - klasa obiektu.
+ 
+ \item  Budowa grafu zupełnego nieskierowanego, którego wierzchołkami będą atrybuty $A_1,... ,A_n$ natomiast waga krawędzi pomiędzy atrybutami $A_i$ i $A_j$ 		będzie równa $I_p(A_i,A_j)$
+ 
+ \item  Budowa minimalnego drzewa rozpinającego z wykorzystaniem algorytmu Kruskala.
+ \item  Stworzenie drzewa skierowanego, poprzez wybór jednego wierzchołka $A_p$. Kierunek każdej krawędzi w drzewie zostanie tak dobrany, aby, przechodząc zgodnie z kierunkiem krawędzi, odległość od wierzchołka $A_p$ rosła.
+ \item Dodanie wierzchołka $C$(reprezentującego klasę obiektu) do drzewa oraz utworzenie krawędzi skierowanych “od” wierzchołka $C$ pomiędzy tym wierzchołkiem a już istniejącymi wierzchołkami $A_1,A_2...A_n$.
+ 
+\end{enumerate}
+
+\subsection{Opis konstrukcji klasyfikatora}
+Działanie klasyfikatora będzie polegało na wyborze klasy, która jest najbardziej prawdopodobna dla danego zestawu wartości atrybutów. W odróżnieniu od  naiwnego klasyfikatora Bayesa, budowany klasyfikator będzie uwzględniał wzajemne zależności atrybutów. W zbudowanym drzewie krawędź wchodząca do węzła(atrybutu) oznacza zależność od innego węzła(atrybutu). Na rysunku \ref{fig:model_drzewa} przedstawiono przykładowy model drzewa TAN. Zgodnie z przedstawioną zasadą łatwo zauważyć, że atrybut $A_2$ jest zależny od atrybutu $A_1$ oraz klasy $C$.
+\begin{figure}[h]
+ \centering
+ \includegraphics[width=70mm]{model1.png}
+ \caption{Przykładowy model drzewa}
+ \label{fig:model_drzewa}
+\end{figure}
+
+Klasyfikator będzie wyznaczał klasę danego obiektu zgodnie z poniższym wzorem:
+\[h(x) = \operatorname*{arg\,max}_{c \in C} P(c|a_1,...,a_n)= \frac{P(c,a_1,a_2,...,a_n)}{P(a_1,a_2,...,a_n)}= 
+\frac {P(c) \cdot \prod_{i=1}^{n} {P(a_i|c,a_j)}}{P(a_1,a_2,...,a_n)} \]
+
+Wyrażenie $P(a_i|c,a_j)$ odzwierciedla zależności w zbudowanym drzewie TAN - atrybut $A_i$ jest zależny od $A_j$
+
+Implementacja algorytmu i powyższy opis zostały stworzone na podstawie artykułu \cite{Bayesian_Network_Classifiers}
+
+\section{Implementacja}
+
 W formie pakietu  języka R o nazwie \textit{notSoNaiveBayes} zostały udostępnione następujące funkcje:
 \begin{itemize}
  \item \textit{notSoNaiveBayes} - funkcja domyślna, która na podstawie danych uczących buduje model, który jest zwracany jako obiekt języka R.
@@ -74,15 +121,23 @@ Dodatkowo na potrzeby implementacji zostały napisane następujące funkcje:
  \item \textit{kruskal} - jest to implementacja klasycznego algorytmu Kruskala, z jedną różnicą,napisana funkcja szuka maksymalnego drzewa rozpinającego.
 \end{itemize}
 
-\section{Założenie projektowe}
-Algorytm tworzenia modelu nie-całkiem-naiwnego klasyfikatora został napisany na podstawie artykułu \cite{Bayesian_Network_Classifiers}
-
 \section{Testy}
+
+W celu sprawdzenia jakości zbudowanego klasyfikatora jego działanie zostało porównane z innymi algorytmami klasyfikacji dostępnymi w modułach języka R: \\
+\begin{itemize}
+\item naiwnym klasyfikatorem Bayesa - moduł 
+\item algorytmem kNN - biblioteka RWeka \cite{RWeka}
+\end{itemize}
+
+Do testów zostaną wykorzystane dane należące do repozytorium Uniwersytetu Kalifornijskiego w Irvine (Machine Learning Repository, University of California, Irvine), dostępne pod adresem: \url{http://archive.ics.uci.edu/ml/datasets.html}.
+
 \section{Porównanie jakości klasyfikacji }
+Wyniki porównania zostały przedstawione w tabeli 1.1
 
 
+\section{Wnioski}
 
-
+\newpage
 
 \bibliographystyle{plain}
 \bibliography{./biblio.bib} 
