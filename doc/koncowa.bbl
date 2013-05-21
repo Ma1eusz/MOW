@@ -1,0 +1,13 @@
+\begin{thebibliography}{1}
+
+\bibitem{Bayesian_Network_Classifiers}
+Nir Friedman, Dan Geiger, and Moises Goldszmidt.
+\newblock {Bayessian Network Classifiers}.
+\newblock {\em Machine Learning}, (29):131–163, 1997.
+
+\bibitem{RWeka}
+Kurt Hornik.
+\newblock Package ‘rweka’.
+\newblock {\em RWeka documentation}, 2013.
+
+\end{thebibliography}

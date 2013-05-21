@@ -1,0 +1,10 @@
+\select@language {polish}
+\select@language {polish}
+\contentsline {section}{\numberline {1}Wst\IeC {\k e}p}{3}{section.1}
+\contentsline {section}{\numberline {2}Algorytm}{3}{section.2}
+\contentsline {subsection}{\numberline {2.1}Opis dzia\IeC {\l }ania algorytmu tworz\IeC {\k a}cego sie\IeC {\'c} bayesowsk\IeC {\k a}}{3}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}Opis konstrukcji klasyfikatora}{3}{subsection.2.2}
+\contentsline {section}{\numberline {3}Implementacja}{4}{section.3}
+\contentsline {section}{\numberline {4}Testy}{4}{section.4}
+\contentsline {section}{\numberline {5}Por\IeC {\'o}wnanie jako\IeC {\'s}ci klasyfikacji }{5}{section.5}
+\contentsline {section}{\numberline {6}Wnioski}{5}{section.6}
