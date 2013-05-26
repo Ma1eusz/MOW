@@ -1,0 +1,40 @@
+library("RWeka")
+library(mlbench)
+library(kknn)
+library(class)
+library("notSoNaiveBayes")
+
+err <- function(y.true, y.pred) { sum(y.pred!=y.true)/length(y.true) }
+
+#data("nursery.rad")
+nursery <- read.arff(file = "nursery.data")
+
+rhv <- runif(nrow(nursery))
+hv.train <- nursery[rhv>=0.33,]
+hv.test <- nursery[rhv<0.33,]
+
+#iris.kknn <- kknn(class~., hv.train, hv.test, distance = 1, kernel = "triangular")
+#summary(iris.kknn)
+
+#fit <- fitted(iris.kknn)
+#table(hv.test$class, fit)
+
+#hv.kknn  <-  kknn(Class~., train = t1, test = t2, k = x,
+ #           kernel = ker, distance = 1)
+  #  fit = fitted(BreastCancer.kknn) 
+
+#hv.pred.1nn <- knn(hv.train[,-6], hv.test[,-6], hv.train[,6], k=1)
+#hv.pred.3nn <- knn(hv.train[,-6], hv.test[,-6], hv.train[,6], k=3)
+#hv.pred.5nn <- knn(hv.train[,-6], hv.test[,-6], hv.train[,6], k=5)
+#err(hv.test$class, iris.kknn)
+
+
+train.con <- train.kknn(class ~., data = hv.train, kmax = 25, kernel = c("rectangular", "triangular", "epanechnikov", "gaussian", "rank", "optimal"))
+plot(train.con)
+
+iris.kknn <- kknn(class~., hv.train, hv.test, distance = 1,kernel = "triangular")
+summary(iris.kknn)
+err(hv.test$class, iris.kknn)
+#table(predict(train.con, hv.test, hv.test$class)
+fit <- fitted(iris.kknn)
+table(hv.test$class, fit)

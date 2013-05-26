@@ -1,0 +1,54 @@
+library("RWeka")
+library("class")
+library("e1071")
+library("notSoNaiveBayes")
+library("boot")
+library(mlbench)
+
+nursery <- read.arff(file = "nursery.data")
+
+rows <- runif(nrow(nursery))
+
+library("rpart")
+
+hv.test <- nursery[rows<0.33,]
+hv.train <- nursery[rows>=0.33,]
+
+library(caret)
+library(ROCR)
+library(pROC)
+
+hv.notNaive <-notSoNaiveBayes(hv.train[,-8],hv.train[,8])
+
+hv.nb <-naiveBayes(class ~.,hv.train)
+
+confusionMatrix(predict(hv.nb, hv.train[,-1], type="c"), hv.train$class, positive="good")
+
+confusionMatrix(predict(hv.nb, hv.test[,-1], type="c"), hv.test$class, positive="good")
+
+#notNaiveBayes
+
+confusionMatrix(predict(hv.notNaive, hv.train[,-8]), hv.train[,8], positive="good")
+
+confusionMatrix(predict(hv.notNaive, hv.test[,-8]), hv.test[,8], positive="good")
+
+#krzywe ROC
+
+#predict(hv.nb, hv.train[,-1], type="raw")
+
+#hv.nb.roc <- roc(predict(hv.nb, hv.train[,-1], type="raw"), hv.train$class, levels="good")
+
+hv.test$class
+
+hv.nb.pred <- prediction(predict(hv.nb, hv.test,type="raw")[,1], hv.test$class,label.ordering=c("good","vgood","acc","unacc"))
+
+hv.nb.perf <- performance(hv.nb.pred, measure="tpr", x.measure="fpr")
+ 
+
+plot(hv.tree.perf)
+
+plot(1-hv.nb.roc[,3], hv.nb.roc[,2], type="l")
+
+aucRoc(hv.nb.roc)
+
+#table(predict(classifier, nursery.rad[,-9]),nursery.rad[,9])

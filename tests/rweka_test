@@ -1,0 +1,15 @@
+library(RWeka)
+library("notSoNaiveBayes")
+
+car <- read.arff(file = "car.data")
+
+#data(HouseVotes84)
+nursery <- read.arff(file = "car.data")
+
+rhv <- runif(nrow(car))
+hv.train <- car[rhv>=0.33,]
+hv.test <- car[rhv<0.33,]
+
+
+classifier <- IBk(class ~., data = hv.train,subset = hv.test)
+summary(classifier)
