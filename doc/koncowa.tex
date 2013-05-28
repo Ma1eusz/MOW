@@ -125,15 +125,54 @@ Dodatkowo na potrzeby implementacji zostały napisane następujące funkcje:
 
 W celu sprawdzenia jakości zbudowanego klasyfikatora jego działanie zostało porównane z innymi algorytmami klasyfikacji dostępnymi w modułach języka R: \\
 \begin{itemize}
-\item naiwnym klasyfikatorem Bayesa - moduł 
-\item algorytmem kNN - biblioteka RWeka \cite{RWeka}
+\item naiwnym klasyfikatorem Bayesa - moduł e1071
+\item algorytmem kNN - moduł kknn 
 \end{itemize}
 
 Do testów zostaną wykorzystane dane należące do repozytorium Uniwersytetu Kalifornijskiego w Irvine (Machine Learning Repository, University of California, Irvine), dostępne pod adresem: \url{http://archive.ics.uci.edu/ml/datasets.html}.
 
-Testy zostały przeprowadzone za pomocą metody Bootstrap. Dla każdego zbioru danych rozlosowano dwie próbki - testową 
+Zbiory testowe:
+\begin{itemize}
+\item chess \url{http://archive.ics.uci.edu/ml/datasets/Chess+%28King-Rook+vs.+King-Pawn%29}
+\item nursery \url{http://archive.ics.uci.edu/ml/datasets/Nursery}
+\item car \url{http://archive.ics.uci.edu/ml/datasets/Car+Evaluation}
+\end{itemize}
+
+Testy zostały przeprowadzone za pomocą metody Bootstrap. Dla każdego zbioru danych rozlosowano dwie próbki - uczącą i testową. Algorytmy zostały przetestowane dziesięciokrotnie.
+
+Wynikiem była procentowa jakość klasyfikacji, określona za pomocą funkcji języka R:
+\begin{itemize}
+\item \textit{confusionMatrix} - dla algorytmów Bayesowskich
+\item \textit{simulation} - dla algorytmu knn
+\end{itemize}
 
 \section{Porównanie jakości klasyfikacji }
+
+Wykresy przedstawiają porównanie jakości klasyfikacji dla zbiorów testowych. Algorytmy badano kolejno dla losowych danych uczących i testowych.
+
+\begin{table}[t]
+\caption{Wyników testów klasyfikacji}
+\label{tabela}
+\begin{tabular}{|l|l|l|l|l|l|l|l|l|l|}
+  \hline 
+  Nr próby & \multicolumn{3}{l|}{Car} & \multicolumn{3}{r|}{Nursery} & \multicolumn{3}{l|}{Chess} \\ \hline
+  0 & Naive & Not Naive & k-NN  & Naive & Not Naive & k-NN & Naive & Not Naive & k-NN \\ \hline
+  1 & 0,8 &	0,95 &0,78 &0,76	&0,85&0,86 & 0,91	&0,94	&0,8\\
+  2 & 0,8 &	0,93 &0,75 &0,75&0,84&0,89&0,85&0,92	&0,84\\
+  3 &0,82 & 0,94 &0,77&0,76&0,85&0,88&0,9&	0,93&	0,85\\
+  4 &0,78 &	0,92	 &0,75&0,76&0,85&0,88&0,85&	0,9&	0,8\\
+  5 &0,79 &	0,96 &0,81&0,76&	0,84&	0,87& 0,87&	0,93	&0,83\\
+  6 &0,82 & 0,94	 &0,8&0,75&	0,85	&0,88&0,88&	0,93	&0,83\\
+  7 &0,78 &	0,94 &0,8&0,73&	0,87	&0,88&0,9	&0,93	&0,8\\
+  8 &0,8  &	0,93 &0,78&0,75&0,86&0,89&0,89	&0,94	&0,84\\
+  9 &0,8 & 0,95 & 0,78&0,74&0,85&0,88&0,87&	0,93	&0,81\\
+  10&0,83& 0,94 &0,83&0,74&0,8&0,87&0,9&	0,93	&0,86\\
+
+  \hline
+\end{tabular} 
+\end{table}
+
+Poniższe wykresy zawierają dane zamieszczone w tabeli \ref{fig:tabela}
 
 \begin{figure}[h]
  \centering
@@ -149,8 +188,17 @@ Testy zostały przeprowadzone za pomocą metody Bootstrap. Dla każdego zbioru d
  \label{fig:model_drzewa}
 \end{figure}
 
-\section{Wnioski}
+\begin{figure}[h]
+ \centering
+\includegraphics[width=150mm]{chess.png}
+ \caption{Wyniki dla zbioru testowego chess}
+ \label{fig:model_drzewa}
+\end{figure}
 
+Z wykresów widać, że zaimplementowany klasyfikator Bayesowski wykazuje się najlepszą skutecznością działania spośród wszystkich przebadanych algorytmów. 
+
+\section{Wnioski}
+Projekt wykazał, że implementacja algorytmu Bayesowskiego, opartego o drzewo TAN, wykazuje większą dokładność klasyfikacji od klasycznego klasyfikatora Bayesowskiego. Algorytm kNN wykazał się lepszą skutecznością od pozostałych modułów dla zbioru nursery. W pozostałych przypadkach jego jakość nie przekraczała poziomu naiwnego klasyfikatora Bayesa.
 \newpage
 
 \bibliographystyle{plain}
