@@ -3,6 +3,11 @@ library(mlbench)
 library(kknn)
 library(class)
 
+gen.err.kknn <- numeric(50)
+
+#mae <- function(y.true, y.pred) { sum(abs(y.pred-y.true))/length(y.true) }
+#mse <- function(y.true, y.pred) { sum((y.pred-y.true)^2)/length(y.true) }
+#rmse <- function(y.true, y.pred) { sqrt(mse(y.true, y.pred)) }
 #err <- function(y.true, y.pred) { sum(y.pred!=y.true)/length(y.true) }
 
 #data(HouseVotes84)
@@ -28,12 +33,23 @@ hv.test <- nursery[rhv<0.33,]
 #err(hv.test$class, iris.kknn)
 
 
-train.con <- train.kknn(class ~., data = hv.train, kmax = 25, kernel = c("rectangular", "triangular", "epanechnikov", "gaussian", "rank", "optimal"))
-plot(train.con)
+#train.con <- train.kknn(class ~., data = hv.train, kmax = 25, kernel = c("rectangular", "triangular", "epanechnikov", "gaussian", "rank", "optimal"))
+#plot(train.con)
 
 iris.kknn <- kknn(class~., hv.train, hv.test, distance = 1,kernel = "triangular")
-summary(iris.kknn)
-#err(hv.test$class, iris.kknn)
-#table(predict(train.con, hv.test, hv.test$class)
-fit <- fitted(iris.kknn)
-table(hv.test$class, fit)
+
+
+simulation(class ~., data = hv.test, runs = 5, train = TRUE, kernel = "triangular", k = 15)
+
+
+#gen.err.kknn <- mean(iris.kknn$class != hv.test[,1])
+
+#summary(gen.err.kknn)
+
+#summary(iris.kknn)
+#err(hv.test$class, iris.kknn$class)
+#table(iris.kknn,hv.test)
+#fit <- fitted(iris.kknn)
+#table(hv.test$class, fit)
+#mae(hv.test$class, iris.kknn$fitted.values)
+#rmse(hv.test$medv, iris.kknn$fitted.values)

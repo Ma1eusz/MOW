@@ -4,15 +4,22 @@ library("e1071")
 library("notSoNaiveBayes")
 library("boot")
 library(mlbench)
+library("kknn")
 
 nursery <- read.arff(file = "nursery.data")
 
-rows <- runif(nrow(nursery))
+#rows <- runif(nrow(nursery))
 
 library("rpart")
 
-hv.test <- nursery[rows<0.33,]
-hv.train <- nursery[rows>=0.33,]
+rozmiar = dim(nursery)[1]
+los =  sample(rozmiar)
+hv.train = nursery[los[1:floor(rozmiar*.9)],]
+hv.test = nursery[los[ceiling(rozmiar*.9):rozmiar],]
+
+
+#hv.test <- nursery[rows<0.33,]
+#hv.train <- nursery[rows>=0.33,]
 
 library(caret)
 library(ROCR)
@@ -24,13 +31,13 @@ hv.nb <-naiveBayes(class ~.,hv.train)
 
 confusionMatrix(predict(hv.nb, hv.train[,-1], type="c"), hv.train$class, positive="good")
 
-confusionMatrix(predict(hv.nb, hv.test[,-1], type="c"), hv.test$class, positive="good")
+#confusionMatrix(predict(hv.nb, hv.test[,-1], type="c"), hv.test$class, positive="good")
 
 #notNaiveBayes
 
 confusionMatrix(predict(hv.notNaive, hv.train[,-8]), hv.train[,8], positive="good")
 
-confusionMatrix(predict(hv.notNaive, hv.test[,-8]), hv.test[,8], positive="good")
+#confusionMatrix(predict(hv.notNaive, hv.test[,-8]), hv.test[,8], positive="good")
 
 #krzywe ROC
 
@@ -38,17 +45,19 @@ confusionMatrix(predict(hv.notNaive, hv.test[,-8]), hv.test[,8], positive="good"
 
 #hv.nb.roc <- roc(predict(hv.nb, hv.train[,-1], type="raw"), hv.train$class, levels="good")
 
-hv.test$class
+#hv.test$class
 
-hv.nb.pred <- prediction(predict(hv.nb, hv.test,type="raw")[,1], hv.test$class,label.ordering=c("good","vgood","acc","unacc"))
+#hv.nb.pred <- prediction(predict(hv.nb, hv.test,type="raw")[,1], hv.test$class,label.ordering=c("good","vgood","acc","unacc"))
 
-hv.nb.perf <- performance(hv.nb.pred, measure="tpr", x.measure="fpr")
+#hv.nb.perf <- performance(hv.nb.pred, measure="tpr", x.measure="fpr")
  
 
-plot(hv.tree.perf)
+#plot(hv.tree.perf)
 
-plot(1-hv.nb.roc[,3], hv.nb.roc[,2], type="l")
+#plot(1-hv.nb.roc[,3], hv.nb.roc[,2], type="l")
 
-aucRoc(hv.nb.roc)
+#aucRoc(hv.nb.roc)
 
 #table(predict(classifier, nursery.rad[,-9]),nursery.rad[,9])
+simulation(class ~., data = hv.test, runs = 5, train = TRUE, kernel = "triangular", k = 15)
+
