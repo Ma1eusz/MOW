@@ -6,23 +6,15 @@ library("boot")
 library(mlbench)
 library("kknn")
 
-#car <- read.arff(file = "chess.rad")
-data(chess.rad)
+car <- read.arff(file = "car.data")
 
-#rows <- runif(nrow(car))
+rows <- runif(nrow(car))
 
-
-rozmiar = dim(chess.rad)[1]
-los =  sample(rozmiar)
-hv.train = chess.rad[los[1:floor(rozmiar*.9)],]
-hv.test = chess.rad[los[ceiling(rozmiar*.9):rozmiar],]
-# classifier <- notSoNaiveBayes(zbTreningowy[,-37], zbTreningowy[,37])
-# table(predict(classifier, zbTestowy[,-37]), zbTestowy[,37])
 library("rpart")
 
-#hv.test <- car[rows<0.33,]
-#hv.train <- car[rows>=0.33,]
-#hv.test <- car[rows<0.33,]
+hv.test <- car[rows<0.33,]
+hv.train <- car[rows>=0.33,]
+
 
 summary(hv.test)
 
@@ -30,40 +22,17 @@ library(caret)
 library(ROCR)
 library(pROC)
 
-hv.notNaive <-notSoNaiveBayes(hv.train[,-37],hv.train[,37])
+hv.notNaive <-notSoNaiveBayes(hv.train[,-6],hv.train[,6])
 
 hv.nb <-naiveBayes(class ~.,hv.train)
 
-#confusionMatrix(predict(hv.nb, hv.train[,-1], type="c"), hv.train$class, positive="good")
-
-confusionMatrix(predict(hv.nb, hv.test[,-1], type="c"), hv.test$class, positive="good")
+confusionMatrix(predict(hv.nb, hv.test[,-6]), hv.test$class, positive="good")
 
 #notNaiveBayes
 
-#confusionMatrix(predict(hv.notNaive, hv.train[,-17]), hv.train[,17], positive="good")
-
-confusionMatrix(predict(hv.notNaive, hv.test[,-37]), hv.test[,37], positive="good")
+confusionMatrix(predict(hv.notNaive, hv.test[,-6]), hv.test[,6], positive="goo")
 
 #krzywe ROC
-
-#predict(hv.nb, hv.train[,-1], type="raw")
-
-#hv.nb.roc <- roc(predict(hv.nb, hv.train[,-1], type="raw"), hv.train$class, levels="good")
-
-hv.test$class
-
-#hv.nb.pred <- prediction(predict(hv.nb, hv.test,type="raw")[,1], hv.test$class,label.ordering=c("good","vgood","acc","unacc"))
-
-#hv.nb.perf <- performance(hv.nb.pred, measure="tpr", x.measure="fpr")
- 
-
-#plot(hv.tree.perf)
-
-#plot(1-hv.nb.roc[,3], hv.nb.roc[,2], type="l")
-
-#aucRoc(hv.nb.roc)
-
-#table(predict(classifier, nursery.rad[,-9]),nursery.rad[,9])
 
 simulation(class ~., data = hv.test, runs = 5, train = TRUE, kernel = "triangular", k = 15)
 

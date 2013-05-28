@@ -4,55 +4,33 @@ library("e1071")
 library("notSoNaiveBayes")
 library("boot")
 library(mlbench)
+library("kknn")
 
-#car <- read.arff(file = "car.data")
-data("chess.rad")
+car <- read.arff(file = "chess.data")
+#data(chess.rad)
 
-rows <- runif(nrow(chess.rad))
+#rows <- runif(nrow(car))
 
+
+rozmiar = dim(car)[1]
+los =  sample(rozmiar)
+hv.train = car[los[1:floor(rozmiar*.9)],]
+hv.test = car[los[ceiling(rozmiar*.9):rozmiar],]
 library("rpart")
 
-hv.test <- chess.rad[rows<0.33,]
-hv.train <- chess.rad[rows>=0.33,]
-#hv.test <- car[rows<0.33,]
-
-summary(hv.test)
-
 library(caret)
-library(ROCR)
-library(pROC)
 
 hv.notNaive <-notSoNaiveBayes(hv.train[,-37],hv.train[,37])
 
-hv.nb <-naiveBayes(hv.train[,-37],hv.train[,37])
+hv.nb <- naiveBayes(wtoeg ~.,hv.train)
 
-confusionMatrix(predict(hv.nb, hv.train[,-37]), hv.train$class, positive="win")
-
-confusionMatrix(predict(hv.nb, hv.test[,-37]), hv.test$class, positive="win")
+confusionMatrix(predict(hv.nb, hv.test[,-37]), hv.test$wtoeg, positive="won")
 
 #notNaiveBayes
 
-confusionMatrix(predict(hv.notNaive, hv.train[,-37]), hv.train[,37], positive="win")
+confusionMatrix(predict(hv.notNaive, hv.test[,-37]), hv.test[,37], positive="won")
 
-confusionMatrix(predict(hv.notNaive, hv.test[,-37]), hv.test[,37], positive="win")
+hv.test$wtoeg
 
-#krzywe ROC
+simulation(wtoeg ~., data = hv.test, runs = 5, train = TRUE, kernel = "triangular", k = 15)
 
-#predict(hv.nb, hv.train[,-1], type="raw")
-
-#hv.nb.roc <- roc(predict(hv.nb, hv.train[,-1], type="raw"), hv.train$class, levels="good")
-
-hv.test$class
-
-hv.nb.pred <- prediction(predict(hv.nb, hv.test,type="raw")[,1], hv.test$class,label.ordering=c("good","vgood","acc","unacc"))
-
-hv.nb.perf <- performance(hv.nb.pred, measure="tpr", x.measure="fpr")
- 
-
-plot(hv.tree.perf)
-
-plot(1-hv.nb.roc[,3], hv.nb.roc[,2], type="l")
-
-aucRoc(hv.nb.roc)
-
-#table(predict(classifier, nursery.rad[,-9]),nursery.rad[,9])
