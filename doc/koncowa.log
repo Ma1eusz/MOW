@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2013.5.21)  22 MAY 2013 00:26
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2013.3.23)  31 MAY 2013 13:18
 entering extended mode
  %&-line parsing enabled.
 **koncowa.tex
@@ -406,6 +406,9 @@ Package: amsthm 2004/08/06 v2.20
 \thm@headsep=\skip52
 \dth@everypar=\toks27
 )
+(/usr/share/texmf-texlive/tex/latex/tools/indentfirst.sty
+Package: indentfirst 1995/11/23 v1.03 Indent first paragraph (DPC)
+)
 (/usr/share/texmf-texlive/tex/latex/babelbib/babelbib.sty
 Package: babelbib 2009/10/10 v1.29 babelbib: multilingual bibliographies (HH)
 )
@@ -558,23 +561,42 @@ File: hpdftex.def 2009/10/09 v6.79a Hyperref driver for pdfTeX
 \f@ncyO@erf=\skip59
 \f@ncyO@olf=\skip60
 \f@ncyO@orf=\skip61
-) (./koncowa.aux)
+) (./koncowa.aux
+
+LaTeX Warning: Label `fig:model_drzewa' multiply defined.
+
+
+LaTeX Warning: Label `fig:model_drzewa' multiply defined.
+
+
+LaTeX Warning: Label `fig:model_drzewa' multiply defined.
+
+
+LaTeX Warning: Label `fig:model_drzewa' multiply defined.
+
+
+LaTeX Warning: Label `fig:model_drzewa' multiply defined.
+
+
+LaTeX Warning: Label `fig:model_drzewa' multiply defined.
+
+)
 \openout1 = `koncowa.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 56.
-LaTeX Font Info:    ... okay on input line 56.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 56.
-LaTeX Font Info:    ... okay on input line 56.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 56.
-LaTeX Font Info:    ... okay on input line 56.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 56.
-LaTeX Font Info:    ... okay on input line 56.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 56.
-LaTeX Font Info:    ... okay on input line 56.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 56.
-LaTeX Font Info:    ... okay on input line 56.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 56.
-LaTeX Font Info:    ... okay on input line 56.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
 
 babelbib: Use citation-dependent languages in bibliography
 babelbib: Set bibliography fall-back language to polish
@@ -591,7 +613,7 @@ babelbib: Set bibliography fall-back language to polish
 \MPnumerator=\count113
 \everyMPtoPDFconversion=\toks30
 )
-Package hyperref Info: Link coloring OFF on input line 56.
+Package hyperref Info: Link coloring OFF on input line 58.
  (/usr/share/texmf-texlive/tex/latex/hyperref/nameref.sty
 Package: nameref 2007/05/29 v2.31 Cross-referencing by name of section
 
@@ -600,24 +622,24 @@ Package: refcount 2008/08/11 v3.1 Data extraction from references (HO)
 )
 \c@section@level=\count114
 )
-LaTeX Info: Redefining \ref on input line 56.
-LaTeX Info: Redefining \pageref on input line 56.
+LaTeX Info: Redefining \ref on input line 58.
+LaTeX Info: Redefining \pageref on input line 58.
  (./koncowa.out)
 (./koncowa.out)
 \@outlinefile=\write3
 \openout3 = `koncowa.out'.
 
 \AtBeginShipoutBox=\box30
-LaTeX Font Info:    Try loading font information for T1+cmss on input line 59.
+LaTeX Font Info:    Try loading font information for T1+cmss on input line 61.
  (/usr/share/texmf-texlive/tex/latex/base/t1cmss.fd
 File: t1cmss.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    Try loading font information for U+msa on input line 59.
+LaTeX Font Info:    Try loading font information for U+msa on input line 61.
 
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2009/06/22 v3.00 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 59.
+LaTeX Font Info:    Try loading font information for U+msb on input line 61.
 
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2009/06/22 v3.00 AMS symbols B
@@ -636,70 +658,122 @@ Class scrartcl Info: You've told me to use the font selection of the element
 (scrartcl)            on input line 7.
 Class scrartcl Info: You've told me to use the font selection of the element
 (scrartcl)           `sectioning' that is an alias of element `disposition'
-(scrartcl)            on input line 8.
-Class scrartcl Info: You've told me to use the font selection of the element
-(scrartcl)           `sectioning' that is an alias of element `disposition'
 (scrartcl)            on input line 9.
 Class scrartcl Info: You've told me to use the font selection of the element
 (scrartcl)           `sectioning' that is an alias of element `disposition'
 (scrartcl)            on input line 10.
+Class scrartcl Info: You've told me to use the font selection of the element
+(scrartcl)           `sectioning' that is an alias of element `disposition'
+(scrartcl)            on input line 15.
 )
 \tf@toc=\write4
 \openout4 = `koncowa.toc'.
 
  [2]
-<model1.png, id=61, 504.88625pt x 233.87375pt>
+<model1.png, id=86, 504.88625pt x 233.87375pt>
 File: model1.png Graphic file (type png)
  <use model1.png>
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 [3]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 114.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 116.
 
  (/usr/share/texmf-texlive/tex/latex/base/omscmr.fd
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 114.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 116.
 
-Underfull \hbox (badness 10000) in paragraph at lines 126--127
+Overfull \hbox (25.0923pt too wide) in paragraph at lines 123--124
+[]\T1/cmr/m/it/10.95 kruskal \T1/cmr/m/n/10.95 - jest to im-ple-men-ta-cja kla-
+sycz-nego al-go-rytmu Kru-skala, z jedn¡ ró»-nic¡,napisana
+ []
+
+<model2.png, id=111, 504.88625pt x 233.87375pt>
+File: model2.png Graphic file (type png)
+ <use model2.png>
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[4 <./model1.png (PNG copy)>]
+Underfull \hbox (badness 10000) in paragraph at lines 145--146
 
  []
 
-LaTeX Font Info:    Try loading font information for T1+cmtt on input line 132.
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 151.
 
 (/usr/share/texmf-texlive/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 1999/05/25 v2.5h Standard LaTeX font definitions
-) [4 <./model1.png (PNG copy)>] [5] (./koncowa.bbl) [6] (./koncowa.aux) ) 
+)
+Overfull \hbox (47.98561pt too wide) in paragraph at lines 175--192
+[][] 
+ []
+
+[5 <./model2.png (PNG copy)>] <chess.png, id=131, 491.58656pt x 353.82187pt>
+File: chess.png Graphic file (type png)
+
+<use chess.png> <car.png, id=133, 642.90187pt x 429.85594pt>
+File: car.png Graphic file (type png)
+ <use car.png>
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<nursery.png, id=134, 636.87938pt x 441.14813pt>
+File: nursery.png Graphic file (type png)
+ <use nursery.png>
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[6 <./chess.png>] [7 <./car.png> <./nursery.png>]
+<chess_pic.png, id=151, 657.45625pt x 496.85625pt>
+File: chess_pic.png Graphic file (type png)
+ <use chess_pic.png> [8
+
+ <./chess_pic.png>] <nursery_pic.png, id=158, 721.69624pt x 507.8975pt>
+File: nursery_pic.png Graphic file (type png)
+
+<use nursery_pic.png> [9
+
+ <./nursery_pic.png>]
+<car_pic.png, id=165, 701.62125pt x 467.7475pt>
+File: car_pic.png Graphic file (type png)
+ <use car_pic.png> [10
+
+ <./car_pic.png>] (./koncowa.bbl) [11
+
+] (./koncowa.aux)
+
+LaTeX Warning: There were multiply-defined labels.
+
+ ) 
 Here is how much of TeX's memory you used:
- 7113 strings out of 495026
- 100332 string characters out of 1181802
- 199884 words of memory out of 3000000
- 10119 multiletter control sequences out of 15000+50000
+ 7192 strings out of 495026
+ 101635 string characters out of 1181802
+ 207471 words of memory out of 3000000
+ 10168 multiletter control sequences out of 15000+50000
  21811 words of font info for 58 fonts, out of 3000000 for 9000
  48 hyphenation exceptions out of 8191
- 43i,11n,43p,611b,320s stack positions out of 5000i,500n,10000p,200000b,50000s
- </hom
-e/uziak/.texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1095.600pk> </home/uziak/.te
-xmf-var/fonts/pk/ljfour/jknappen/ec/ecti1095.600pk> </home/uziak/.texmf-var/fon
-ts/pk/ljfour/jknappen/ec/ecsx1200.600pk> </home/uziak/.texmf-var/fonts/pk/ljfou
-r/jknappen/ec/ecsx1095.600pk> </home/uziak/.texmf-var/fonts/pk/ljfour/jknappen/
-ec/ecsx1440.600pk> </home/uziak/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1095
-.600pk> </home/uziak/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1440.600pk> </h
-ome/uziak/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1728.600pk> </home/uziak/.
-texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm2074.600pk> </home/uziak/.texmf-var/f
-onts/pk/ljfour/jknappen/ec/eccc1095.600pk></usr/share/texmf-texlive/fonts/type1
-/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-texlive/fonts/type1/public/ams
-fonts/cm/cmmi10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cm
-mi6.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi8.pfb></us
-r/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texm
-f-texlive/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-texlive/fon
-ts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/type1/pu
-blic/amsfonts/cm/cmsy8.pfb>
-Output written on koncowa.pdf (6 pages, 201266 bytes).
+ 43i,11n,43p,611b,345s stack positions out of 5000i,500n,10000p,200000b,50000s
+ </home/mateusz/.texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1095.600pk> </home
+/mateusz/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1095.600pk> </home/mateusz/
+.texmf-var/fonts/pk/ljfour/jknappen/ec/ecsx1200.600pk> </home/mateusz/.texmf-va
+r/fonts/pk/ljfour/jknappen/ec/ecsx1095.600pk> </home/mateusz/.texmf-var/fonts/p
+k/ljfour/jknappen/ec/ecsx1440.600pk> </home/mateusz/.texmf-var/fonts/pk/ljfour/
+jknappen/ec/ecrm1095.600pk> </home/mateusz/.texmf-var/fonts/pk/ljfour/jknappen/
+ec/ecrm1440.600pk> </home/mateusz/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm17
+28.600pk> </home/mateusz/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm2074.600pk>
+ </home/mateusz/.texmf-var/fonts/pk/ljfour/jknappen/ec/eccc1095.600pk></usr/sha
+re/texmf-texlive/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-te
+xlive/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-texlive/fonts
+/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texmf-texlive/fonts/type1/publi
+c/amsfonts/cm/cmmi8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/c
+m/cmr10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr8.pfb><
+/usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/
+texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
+Output written on koncowa.pdf (11 pages, 346531 bytes).
 PDF statistics:
- 446 PDF objects out of 1000 (max. 8388607)
- 25 named destinations out of 1000 (max. 500000)
- 70 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 555 PDF objects out of 1000 (max. 8388607)
+ 44 named destinations out of 1000 (max. 500000)
+ 145 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -5,5 +5,5 @@ Version: 0.1
 Date: 2013-04-29
 Author: Mateusz Jamiolkowski
 Maintainer: Mateusz Jamiolkowski <MJamiolkowski@stud.elka.pw.edu.pl>
-Description: This package implements tree-augmented navie Bayesian network (TAN)
+Description: This package implements tree-augmented navie Bayesian network (TAN) classifier
 License: GPL (>= 2)

@@ -9,7 +9,8 @@
 \usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
 \usepackage[polish]{babel} % English language/hyphenation
 \usepackage{amsmath,amsfonts,amsthm} % Math packages
-
+\frenchspacing
+\usepackage{indentfirst}
 \usepackage{babelbib}
 
 \usepackage{graphicx}
@@ -32,6 +33,7 @@
 \numberwithin{table}{section} % Number tables within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
 
 \setlength\parindent{0pt} % Removes all indentation from paragraphs - comment this line for an assignment with lots of text
+
 
 %----------------------------------------------------------------------------------------
 %	TITLE SECTION
@@ -74,7 +76,7 @@ Celem projektu jest implementacja algorytmu budowy sieci bayesowskiej, która b�
 Na podstawie analizy dostępnych materiałów zdecydowano, że budowa sieci bayesowskiej zostanie zaimplementowana z wykorzystaniem drzew TAN (tree-augmented naive Bayesian Network). 
 
 \subsection{Opis działania algorytmu tworzącego sieć bayesowską}
-
+\label{ref:bayesAlgorithmDescription}
 
 
 Opis algorytmu tworzenia drzew TAN:
@@ -85,7 +87,7 @@ Opis algorytmu tworzenia drzew TAN:
  \item  Budowa grafu zupełnego nieskierowanego, którego wierzchołkami będą atrybuty $A_1,... ,A_n$ natomiast waga krawędzi pomiędzy atrybutami $A_i$ i $A_j$ 		będzie równa $I_p(A_i,A_j)$
  
  \item  Budowa minimalnego drzewa rozpinającego z wykorzystaniem algorytmu Kruskala.
- \item  Stworzenie drzewa skierowanego, poprzez wybór jednego wierzchołka $A_p$. Kierunek każdej krawędzi w drzewie zostanie tak dobrany, aby, przechodząc zgodnie z kierunkiem krawędzi, odległość od wierzchołka $A_p$ rosła.
+ \item  Stworzenie drzewa skierowanego, poprzez wybór jednego wierzchołka $A_p$. Kierunek każdej krawędzi w drzewie zostanie tak dobrany, aby, przechodząc zgodnie z kierunkiem krawędzi, odległość od wierzchołka $A_p$ rosła. \label{ref:buildDirectedTreeAlgorithm}
  \item Dodanie wierzchołka $C$(reprezentującego klasę obiektu) do drzewa oraz utworzenie krawędzi skierowanych “od” wierzchołka $C$ pomiędzy tym wierzchołkiem a już istniejącymi wierzchołkami $A_1,A_2...A_n$.
  
 \end{enumerate}
@@ -121,7 +123,24 @@ Dodatkowo na potrzeby implementacji zostały napisane następujące funkcje:
  \item \textit{kruskal} - jest to implementacja klasycznego algorytmu Kruskala, z jedną różnicą,napisana funkcja szuka maksymalnego drzewa rozpinającego.
 \end{itemize}
 
+\subsection{Założenia implementacyjne}
+
+Autorzy artykułu \cite{Bayesian_Network_Classifiers} na podstawie, którego implementowano klasyfikator Bayesowski oparty o drzewa TAN, nie opisali jednego kroku algorytmu. Mianowicie nie podali informacji jak w punkcie nr \ref{ref:buildDirectedTreeAlgorithm} algorytmu opisanego w rozdziale  \ref{ref:bayesAlgorithmDescription} wybrać "`uprzywilejowany"' wierzchołek, który będzie zależny tylko od węzła $C$. Patrz rysunek \ref{fig:model_drzewa_zacieniowany}, rozważany wierzchołek został oznaczony szarym kolorem. 
+
+
+\begin{figure}[h]
+ \centering
+ \includegraphics[width=70mm]{model2.png}
+ \caption{Przykładowy model drzewa, w którym jako wierzchołek "`uprzywilejowany"' został oznaczony kolorem szarym. }
+ \label{fig:model_drzewa_zacieniowany}
+\end{figure}
+
+Z braku tychże informacji, przeprowadzono testy, aby sprawdzić jak zależy jakość klasyfikacji klasyfikatora, od wyboru wspomnianego wierzchołka. Testy przeprowadzono, na opisanych w rozdziale \ref{ref:testy} 
+zbiorach testowych. Okazało się, że wybór tego wierzchołka nie wpływa na jakość klasyfikacji zbudowanego klasyfikatora w żadnym z podanych przypadków. Ta obserwacja pozwala przypuszczać, dlaczego ta informacja została pominięta przez autorów artykułu na podstawie, którego implementowano badany algorytm.
+
+
 \section{Testy}
+\label{ref:testy}
 
 W celu sprawdzenia jakości zbudowanego klasyfikatora jego działanie zostało porównane z innymi algorytmami klasyfikacji dostępnymi w modułach języka R: \\
 \begin{itemize}
@@ -129,16 +148,16 @@ W celu sprawdzenia jakości zbudowanego klasyfikatora jego działanie zostało p
 \item algorytmem kNN - moduł kknn 
 \end{itemize}
 
-Do testów zostaną wykorzystane dane należące do repozytorium Uniwersytetu Kalifornijskiego w Irvine (Machine Learning Repository, University of California, Irvine), dostępne pod adresem: \url{http://archive.ics.uci.edu/ml/datasets.html}.
+Do testów zostały wykorzystane dane należące do repozytorium Uniwersytetu Kalifornijskiego w Irvine (Machine Learning Repository, University of California, Irvine), dostępne pod adresem: \url{http://archive.ics.uci.edu/ml/datasets.html}.
 
 Zbiory testowe:
 \begin{itemize}
-\item chess \url{http://archive.ics.uci.edu/ml/datasets/Chess+%28King-Rook+vs.+King-Pawn%29}
+\item chess \url{http://archive.ics.uci.edu/ml/datasets/Chess}
 \item nursery \url{http://archive.ics.uci.edu/ml/datasets/Nursery}
 \item car \url{http://archive.ics.uci.edu/ml/datasets/Car+Evaluation}
 \end{itemize}
 
-Testy zostały przeprowadzone za pomocą metody Bootstrap. Dla każdego zbioru danych rozlosowano dwie próbki - uczącą i testową. Algorytmy zostały przetestowane dziesięciokrotnie.
+Testy zostały przeprowadzone za pomocą metody bootstrap. Dla każdego zbioru danych rozlosowano dwie próbki - uczącą i testową. Algorytmy zostały przetestowane dziesięciokrotnie.
 
 Wynikiem była procentowa jakość klasyfikacji, określona za pomocą funkcji języka R:
 \begin{itemize}
@@ -148,11 +167,11 @@ Wynikiem była procentowa jakość klasyfikacji, określona za pomocą funkcji j
 
 \section{Porównanie jakości klasyfikacji }
 
-Wykresy przedstawiają porównanie jakości klasyfikacji dla zbiorów testowych. Algorytmy badano kolejno dla losowych danych uczących i testowych.
+Wykresy przedstawiają porównanie jakości klasyfikacji dla zbiorów testowych. Algorytmy badano kolejno dla losowych danych uczących i testowych w stosunku 2:1.
 
-\begin{table}[t]
+\begin{table}[!h]
 \caption{Wyników testów klasyfikacji}
-\label{tabela}
+\label{tab:tabela}
 \begin{tabular}{|l|l|l|l|l|l|l|l|l|l|}
   \hline 
   Nr próby & \multicolumn{3}{l|}{Car} & \multicolumn{3}{r|}{Nursery} & \multicolumn{3}{l|}{Chess} \\ \hline
@@ -172,35 +191,97 @@ Wykresy przedstawiają porównanie jakości klasyfikacji dla zbiorów testowych.
 \end{tabular} 
 \end{table}
 
-Poniższe wykresy zawierają dane zamieszczone w tabeli \ref{fig:tabela}
+Poniższe wykresy zawierają dane zamieszczone w tabeli \ref{tab:tabela}
 
-\begin{figure}[h]
+\begin{figure}[!h]
  \centering
-\includegraphics[width=150mm]{car.png}
- \caption{Wyniki dla zbioru testowego car}
- \label{fig:model_drzewa}
-\end{figure}
-
-\begin{figure}[h]
- \centering
-\includegraphics[width=150mm]{nursery.png}
- \caption{Wyniki dla zbioru testowego nursery}
- \label{fig:model_drzewa}
-\end{figure}
-
-\begin{figure}[h]
- \centering
-\includegraphics[width=150mm]{chess.png}
+\includegraphics[width=0.75\textwidth]{chess.png}
  \caption{Wyniki dla zbioru testowego chess}
  \label{fig:model_drzewa}
 \end{figure}
 
-Z wykresów widać, że zaimplementowany klasyfikator Bayesowski wykazuje się najlepszą skutecznością działania spośród wszystkich przebadanych algorytmów. 
+\begin{figure}[!h]
+ \centering
+\includegraphics[width=0.75\textwidth]{car.png}
+ \caption{Wyniki dla zbioru testowego car}
+ \label{fig:model_drzewa}
+\end{figure}
+
+\begin{figure}[!h]
+ \centering
+\includegraphics[width=0.75\textwidth]{nursery.png}
+ \caption{Wyniki dla zbioru testowego nursery}
+ \label{fig:model_drzewa}
+\end{figure}
+
+
+
+\clearpage
+
+Na podstawie analizy wykresów można 
+stwierdzić, że zaimplementowany klasyfikator Bayesowski wykazuje się najlepszą skutecznością działania spośród wszystkich przebadanych algorytmów dla zbiorów car i chess, oraz porównywalną jakością do algorytmu k-NN dla zbioru nursery.
+
+\subsection{Analiza podstawowych parametrów statystycznych uzyskanych wyników}
+\label{ref:wykresy_pudelkowe}
+
+W celu pogłębionej analizy jakości uzyskanego klasyfikatora zostaną obliczone podstawowe parametry statystyczne wyników uzyskiwanych przez poszczególne algorytmu i zaprezentowane na wykresach pudełkowych dla poszczególnych zbiorów danych.
+Dla każdej pary zbiór danych-algorytm przeprowadzono 100 prób typu bootstrap, zbiór danych został podzielony na treningowy i testowy w stosunku 2:1.
+
+\subsubsection{Zbiór danych -- chess}
+\begin{figure}[!h]
+ \centering
+\includegraphics[width=0.75\textwidth]{chess_pic.png}
+ \caption{Wykres pudełkowy dla zbioru chess}
+ \label{fig:model_drzewa}
+\end{figure}
+
+\clearpage
+
+\subsubsection{Zbiór danych -- nursery}
+\begin{figure}[!h]
+ \centering
+\includegraphics[width=0.75\textwidth]{nursery_pic.png}
+ \caption{Wykres pudełkowy dla zbioru nursery}
+ \label{fig:model_drzewa}
+\end{figure}
+\clearpage
+
+\subsubsection{Zbiór danych -- car}
+
+\begin{figure}[!h]
+ \centering
+\includegraphics[width=0.75\textwidth]{car_pic.png}
+ \caption{Wykres pudełkowy dla zbioru car}
+ \label{fig:model_drzewa}
+\end{figure}
+
+\clearpage
 
 \section{Wnioski}
-Projekt wykazał, że implementacja algorytmu Bayesowskiego, opartego o drzewo TAN, wykazuje większą dokładność klasyfikacji od klasycznego klasyfikatora Bayesowskiego. Algorytm kNN wykazał się lepszą skutecznością od pozostałych modułów dla zbioru nursery. W pozostałych przypadkach jego jakość nie przekraczała poziomu naiwnego klasyfikatora Bayesa.
-\newpage
+Projekt wykazał, że implementacja nie-całkiem naiwnego klasyfikatora Bayesa, opartego o drzewo TAN, wykazuje większą dokładność klasyfikacji od klasycznego klasyfikatora Bayesowskiego. Algorytm kNN  osiągał lepszą skutecznością od pozostałych modułów tylko dla zbioru nursery. W pozostałych przypadkach jego jakość była porównywalna z naiwnym klasyfikatorem Bayesa.
 
+Na podstawie analizy wykresów pudełkowych umieszczonych w rozdziale  \ref{ref:wykresy_pudelkowe} można zauważyć, że rozstęp kwartylny dla algorytmu opartego o drzewa TAN jest mniejszy niż pozostałych algorytmów, co jest cechą pozytywną. Pozwala to twierdzić, iż algorytm dla różnych zbiorów danych będzie utrzymywał podobną jakość działania.
+
+W pracy, na której podstawie był implementowany algorytm nie-całkiem naiwnego klasyfikatora Bayesa zostały umieszczone wyniki, jakie otrzymali w wyniku testów ich implementacji algorytmu. Wykorzystali do tego ogólnodostępny zbiór danych chess repozytorium UCI, który również został wykorzystany w tej pracy.
+
+W tabeli poniżej znajduje się porównanie wyników działania "`oryginalnej"'  i "`autorskiej"'  implementacji wspomnianego algorytmu.
+
+\begin{table}[h]
+\caption{Porównanie działania "`oryginalna"'  i "`autorskiej"' implementacji nie-całkiem naiwnego klasyfikatora Bayesa} 
+    \begin{tabular}{|l|l|l|}
+    \hline
+    ~                            & "`autorska"' impl alg & "`oryginalna"' impl. alg \\ \hline
+    średnia jakość działania alg. & 0.9268               & 0.9231               \\ \hline
+    odchylenie standardowe       & 0.0070               & 0.0082               \\ \hline
+    \end{tabular}
+\end{table}
+
+
+Uzyskane rezultaty są porównywalne, pozwala to twierdzić, iż "`autorska"' implementacja klasyfikatora opartego o drzewa TAN jest poprawna.
+
+
+
+\nocite{*}
 \bibliographystyle{plain}
 \bibliography{./biblio.bib} 
 

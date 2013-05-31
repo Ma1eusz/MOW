@@ -1,17 +1,22 @@
-notSoNaiveBayes <- function(obj,..) 
+notSoNaiveBayes <- function(x,y,rootNode,buildModelsForAllNode,..) 
   UseMethod("notSoNaiveBayes")
 
 
 
-notSoNaiveBayes.default <- function(x,y,...) {
+notSoNaiveBayes.default <- function(x,y,rootNode=1,buildModelsForAllNode=FALSE,...) {
   call <- match.call()
   rows <- dim(x)[1]
   cols <- dim(x)[2]
   comb <- combn(cols,2)
   
+  
+  if(rootNode>cols) {
+    simpleError("Number of starting node can not be lager than number of attriubutes!")
+  }
+  
   est <- function(var) {
     if (is.numeric(var)) {
-      simpleError("Tylko atrybuty nominalne!!!")
+      simpleError("You can provide only categorical attributes")
     } else {
       tab <- table(y, var)
       (tab ) / (rowSums(tab) )
@@ -66,42 +71,84 @@ notSoNaiveBayes.default <- function(x,y,...) {
     
   }
   con = kruskal(I1)
-  
-  directedTree = buildDirectedTree(con,4)
-  dep=t(directedTree)
-  
-  conditionalProb = list()
-  for (j in 1:cols) {
-    for (i in 1:cols) {
-      if(dep[i,j] == 0) {
-        conditionalProb = c(conditionalProb,0)
-      }
-      else {
-        Aij = x[,c(i,j)]
-        pAiAj = table(Aij[,1],Aij[,2],y)
-        pAiAj = apply(pAiAj,c(2,3),prob)
-        conditionalProb = c(conditionalProb, list(pAiAj))
-        
+  if (!buildModelsForAllNode) {
+    directedTree = buildDirectedTree(con,rootNode)
+    dep=t(directedTree)
+    
+    conditionalProb = list()
+    for (j in 1:cols) {
+      for (i in 1:cols) {
+        if(dep[i,j] == 0) {
+          conditionalProb = c(conditionalProb,0)
+        }
+        else {
+          Aij = x[,c(i,j)]
+          pAiAj = table(Aij[,1],Aij[,2],y)
+          pAiAj = apply(pAiAj,c(2,3),prob)
+          conditionalProb = c(conditionalProb, list(pAiAj))
+          
+        }
       }
     }
+    
+    
+    
+    
+    structure(list(classC = length(levels(y)),
+                   apriori = apriori,
+                   classProb=classProb,
+                   I1=I1,
+                   con=con,
+                   dep=dep,
+                   directedTree = directedTree,
+                   conditionalProb = conditionalProb
+    ),
+              
+              class = "notSoNaiveBayes"
+    )
+    
   }
-  
-  
-  
-  
-  structure(list(classC = length(levels(y)),
-                 apriori = apriori,
-                 classProb=classProb,
-                 I1=I1,
-                 con=con,
-                 dep=dep,
-                 directedTree = directedTree,
-                 conditionalProb = conditionalProb
-  ),
+  else {
+    retStructList = list();
+    for (rootNode in 1:cols) {
+      directedTree = buildDirectedTree(con,rootNode)
+      dep=t(directedTree)
+      
+      conditionalProb = list()
+      for (j in 1:cols) {
+        for (i in 1:cols) {
+          if(dep[i,j] == 0) {
+            conditionalProb = c(conditionalProb,0)
+          }
+          else {
+            Aij = x[,c(i,j)]
+            pAiAj = table(Aij[,1],Aij[,2],y)
+            pAiAj = apply(pAiAj,c(2,3),prob)
+            conditionalProb = c(conditionalProb, list(pAiAj))
             
-            class = "notSoNaiveBayes"
-  )
-  
+          }
+        }
+      }
+      
+      
+      
+      
+      retStructList  = c(retStructList, list(structure(list(classC = length(levels(y)),
+                     apriori = apriori,
+                     classProb=classProb,
+                     I1=I1,
+                     con=con,
+                     dep=dep,
+                     directedTree = directedTree,
+                     conditionalProb = conditionalProb
+      ),
+                
+                class = "notSoNaiveBayes"
+      )))
+    }
+    
+    return (retStructList)
+  }
 }
 
 
@@ -121,7 +168,7 @@ predict.notSoNaiveBayes <- function (obj,x) {
       if(nameList[i] == name)
         break;
       if(i>length(nameList))
-        simpleError("błąd atrybutu")
+        simpleError("attribute error")
     }
     i
   }
