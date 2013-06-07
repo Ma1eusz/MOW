@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2013.3.23)  31 MAY 2013 13:18
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2013.3.23)  4 JUN 2013 07:50
 entering extended mode
  %&-line parsing enabled.
 **koncowa.tex
@@ -577,9 +577,6 @@ LaTeX Warning: Label `fig:model_drzewa' multiply defined.
 
 LaTeX Warning: Label `fig:model_drzewa' multiply defined.
 
-
-LaTeX Warning: Label `fig:model_drzewa' multiply defined.
-
 )
 \openout1 = `koncowa.aux'.
 
@@ -710,33 +707,33 @@ Overfull \hbox (47.98561pt too wide) in paragraph at lines 175--192
 [][] 
  []
 
-[5 <./model2.png (PNG copy)>] <chess.png, id=131, 491.58656pt x 353.82187pt>
+[5 <./model2.png (PNG copy)>] <chess.png, id=130, 491.58656pt x 353.82187pt>
 File: chess.png Graphic file (type png)
 
-<use chess.png> <car.png, id=133, 642.90187pt x 429.85594pt>
+<use chess.png> <car.png, id=132, 642.90187pt x 429.85594pt>
 File: car.png Graphic file (type png)
  <use car.png>
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<nursery.png, id=134, 636.87938pt x 441.14813pt>
+<nursery.png, id=133, 636.87938pt x 441.14813pt>
 File: nursery.png Graphic file (type png)
  <use nursery.png>
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [6 <./chess.png>] [7 <./car.png> <./nursery.png>]
-<chess_pic.png, id=151, 657.45625pt x 496.85625pt>
+<chess_pic.png, id=150, 657.45625pt x 496.85625pt>
 File: chess_pic.png Graphic file (type png)
  <use chess_pic.png> [8
 
- <./chess_pic.png>] <nursery_pic.png, id=158, 721.69624pt x 507.8975pt>
+ <./chess_pic.png>] <nursery_pic.png, id=157, 721.69624pt x 507.8975pt>
 File: nursery_pic.png Graphic file (type png)
 
 <use nursery_pic.png> [9
 
  <./nursery_pic.png>]
-<car_pic.png, id=165, 701.62125pt x 467.7475pt>
+<car_pic.png, id=164, 701.62125pt x 467.7475pt>
 File: car_pic.png Graphic file (type png)
  <use car_pic.png> [10
 
@@ -748,13 +745,13 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 7192 strings out of 495026
- 101635 string characters out of 1181802
- 207471 words of memory out of 3000000
- 10168 multiletter control sequences out of 15000+50000
+ 7193 strings out of 495026
+ 101657 string characters out of 1181802
+ 207523 words of memory out of 3000000
+ 10169 multiletter control sequences out of 15000+50000
  21811 words of font info for 58 fonts, out of 3000000 for 9000
  48 hyphenation exceptions out of 8191
- 43i,11n,43p,611b,345s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 43i,11n,43p,619b,345s stack positions out of 5000i,500n,10000p,200000b,50000s
  </home/mateusz/.texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1095.600pk> </home
 /mateusz/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1095.600pk> </home/mateusz/
 .texmf-var/fonts/pk/ljfour/jknappen/ec/ecsx1200.600pk> </home/mateusz/.texmf-va
@@ -771,7 +768,7 @@ c/amsfonts/cm/cmmi8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/c
 m/cmr10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr8.pfb><
 /usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/
 texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on koncowa.pdf (11 pages, 346531 bytes).
+Output written on koncowa.pdf (11 pages, 346548 bytes).
 PDF statistics:
  555 PDF objects out of 1000 (max. 8388607)
  44 named destinations out of 1000 (max. 500000)

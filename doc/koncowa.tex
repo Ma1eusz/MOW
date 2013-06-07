@@ -93,12 +93,12 @@ Opis algorytmu tworzenia drzew TAN:
 \end{enumerate}
 
 \subsection{Opis konstrukcji klasyfikatora}
-Działanie klasyfikatora będzie polegało na wyborze klasy, która jest najbardziej prawdopodobna dla danego zestawu wartości atrybutów. W odróżnieniu od  naiwnego klasyfikatora Bayesa, budowany klasyfikator będzie uwzględniał wzajemne zależności atrybutów. W zbudowanym drzewie krawędź wchodząca do węzła(atrybutu) oznacza zależność od innego węzła(atrybutu). Na rysunku \ref{fig:model_drzewa} przedstawiono przykładowy model drzewa TAN. Zgodnie z przedstawioną zasadą łatwo zauważyć, że atrybut $A_2$ jest zależny od atrybutu $A_1$ oraz klasy $C$.
+Działanie klasyfikatora będzie polegało na wyborze klasy, która jest najbardziej prawdopodobna dla danego zestawu wartości atrybutów. W odróżnieniu od  naiwnego klasyfikatora Bayesa, budowany klasyfikator będzie uwzględniał wzajemne zależności atrybutów. W zbudowanym drzewie krawędź wchodząca do węzła(atrybutu) oznacza zależność od innego węzła(atrybutu). Na rysunku \ref{fig:model_drzewa_tan} przedstawiono przykładowy model drzewa TAN. Zgodnie z przedstawioną zasadą łatwo zauważyć, że atrybut $A_2$ jest zależny od atrybutu $A_1$ oraz klasy $C$.
 \begin{figure}[h]
  \centering
  \includegraphics[width=70mm]{model1.png}
  \caption{Przykładowy model drzewa}
- \label{fig:model_drzewa}
+ \label{fig:model_drzewa_tan}
 \end{figure}
 
 Klasyfikator będzie wyznaczał klasę danego obiektu zgodnie z poniższym wzorem:
@@ -262,7 +262,7 @@ Projekt wykazał, że implementacja nie-całkiem naiwnego klasyfikatora Bayesa, 
 
 Na podstawie analizy wykresów pudełkowych umieszczonych w rozdziale  \ref{ref:wykresy_pudelkowe} można zauważyć, że rozstęp kwartylny dla algorytmu opartego o drzewa TAN jest mniejszy niż pozostałych algorytmów, co jest cechą pozytywną. Pozwala to twierdzić, iż algorytm dla różnych zbiorów danych będzie utrzymywał podobną jakość działania.
 
-W pracy, na której podstawie był implementowany algorytm nie-całkiem naiwnego klasyfikatora Bayesa zostały umieszczone wyniki, jakie otrzymali w wyniku testów ich implementacji algorytmu. Wykorzystali do tego ogólnodostępny zbiór danych chess repozytorium UCI, który również został wykorzystany w tej pracy.
+W pracy, na podstawie której był implementowany algorytm nie-całkiem naiwnego klasyfikatora Bayesa zostały umieszczone wyniki, jakie otrzymali autorzy testując swoją implementację algorytmu. Wykorzystali do tego ogólnodostępny zbiór danych chess repozytorium UCI, który również został wykorzystany do testów w niniejszym projekcie.
 
 W tabeli poniżej znajduje się porównanie wyników działania "`oryginalnej"'  i "`autorskiej"'  implementacji wspomnianego algorytmu.
 
